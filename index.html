@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Viação Elite - Transporte coletivo moderno, seguro e pontual.">
+
+  <title>Viação Elite| Transporte Coletivo Moderno</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon_square.ico">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #003f7d 0%, #c4161c 100%);
+    }
+
+    /* Melhorias específicas para Mobile */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+      
+      .hero-content {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.4rem;
+        line-height: 1.1;
+      }
+      
+      .cards {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-zinc-50 overflow-x-hidden">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="LOGOTIPO.png" alt="Viação Elite" class="h-12 md:h-14 w-auto">
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-700">
+        <a href="#inicio" class="nav-link">Início</a>
+        <a href="#servicos" class="nav-link">Serviços</a>
+        <a href="frota.html" class="nav-link">Frota</a>
+        <a href="mapa.html" class="nav-link">Mapa de Linhas</a>
+        <a href="horario.html" class="nav-link">Horários</a>
+        <a href="trabalhe-conosco.html" class="nav-link">Trabalhe Conosco</a>
+      </nav>
+
+      <a href="#contato" 
+         class="px-5 md:px-6 py-3 bg-[#003f7d] text-white font-semibold rounded-xl hover:bg-[#002b5c] transition-all text-sm md:text-base">
+        Contato
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero-bg text-white min-h-screen flex items-center">
+    <div class="max-w-7xl mx-auto px-5 md:px-6 w-full">
+      <div class="hero-content grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2 rounded-3xl text-sm font-medium">
+            🚍 50+ anos conectando Niterói
+          </div>
+          
+          <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+            Transportando mais<br>e <span class="text-white">melhor</span>.
+          </h1>
+          
+          <p class="text-lg md:text-2xl opacity-90 max-w-lg">
+            Frota moderna, pontualidade e o compromisso de sempre com a mobilidade da sua cidade.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="horario.html" 
+               class="px-8 py-4 bg-white text-[#003f7d] font-semibold rounded-2xl hover:scale-105 transition-all text-lg text-center">
+              Ver Horários em Tempo Real →
+            </a>
+            <a href="trabalhe-conosco.html" 
+               class="px-8 py-4 border-2 border-white font-semibold rounded-2xl hover:bg-white hover:text-[#003f7d] transition-all text-lg text-center">
+              Trabalhe Conosco
+            </a>
+          </div>
+        </div>
+
+        <div class="flex justify-center md:justify-end pt-8 md:pt-0">
+          <img src="LOGOTIPO.png" alt="Viação Elite" class="w-64 md:w-96 drop-shadow-2xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="py-20 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-4xl font-bold text-[#003f7d]">Nossos Serviços</h2>
+        <p class="text-zinc-600 mt-4 text-lg">Qualidade, segurança e modernidade no transporte coletivo</p>
+      </div>
+
+      <div class="cards grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div class="card-hover bg-white border border-zinc-100 rounded-3xl p-8 text-center">
+          <div class="text-5xl mb-6">🕒</div>
+          <h3 class="text-2xl font-semibold text-[#003f7d]">Pontualidade</h3>
+          <p class="text-zinc-600 mt-3">Horários confiáveis e monitoramento em tempo real.</p>
+        </div>
+
+        <div class="card-hover bg-white border border-zinc-100 rounded-3xl p-8 text-center">
+          <div class="text-5xl mb-6">🚌</div>
+          <h3 class="text-2xl font-semibold text-[#003f7d]"><a href="frota.html">Frota Moderna</a></h3>
+          <p class="text-zinc-600 mt-3">Veículos novos, com ar-condicionado e acessibilidade.</p>
+        </div>
+
+        <div class="card-hover bg-white border border-zinc-100 rounded-3xl p-8 text-center">
+          <div class="text-5xl mb-6">📍</div>
+          <h3 class="text-2xl font-semibold text-[#003f7d]"><a href="mapa.html">Cobertura Completa</a></h3>
+          <p class="text-zinc-600 mt-3">Niterói e região metropolitana com as melhores linhas.</p>
+        </div>
+
+        <div class="card-hover bg-white border border-zinc-100 rounded-3xl p-8 text-center">
+          <div class="text-5xl mb-6">👷‍♂️</div>
+          <h3 class="text-2xl font-semibold text-[#003f7d]"><a href="trabalhe-conosco.html">Trabalhe Conosco</a></h3>
+          <p class="text-zinc-600 mt-3">Faça parte da nossa equipe. Vagas abertas!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="bg-[#003f7d] py-16 text-white">
+    <div class="max-w-4xl mx-auto px-5 md:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold">Pronto para viajar com conforto e segurança?</h2>
+      <a href="horario.html" 
+         class="mt-8 inline-flex items-center gap-3 bg-white text-[#003f7d] px-8 md:px-10 py-5 rounded-2xl font-semibold text-lg md:text-xl hover:bg-amber-400 transition-all">
+        Consultar Horários Agora →
+      </a>
+    </div>
+  </div>
+
+<!-- CONTATO -->
+  <section id="contato" class="py-16 md:py-20 bg-zinc-100">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <h2 class="text-4xl font-bold text-center text-[#003f7d] mb-10 md:mb-12">Entre em Contato</h2>
+      
+      <div class="grid md:grid-cols-3 gap-8 md:gap-10 text-center">
+        
+        <!-- Telefone -->
+        <div class="space-y-3">
+          <p class="text-sm uppercase tracking-widest text-zinc-500 font-medium">Telefone</p>
+          <p class="text-2xl md:text-3xl font-semibold text-[#003f7d]">(21)99999-9999</p>
+        </div>
+
+        <!-- E-mail -->
+        <div class="space-y-3">
+          <p class="text-sm uppercase tracking-widest text-zinc-500 font-medium">E-mail</p>
+          <a href="mailto:viacao.elite@viacaoelite.com.br" 
+             class="text-lg md:text-3xl font-semibold text-[#003f7d] hover:text-[#c4161c] transition-colors leading-tight break-all">
+            viacao.elite@viacaoelite.com.br
+          </a>
+        </div>
+
+        <!-- Endereço -->
+        <div class="space-y-3">
+          <p class="text-sm uppercase tracking-widest text-zinc-500 font-medium">Endereço</p>
+          <p class="text-zinc-700 text-[15px] md:text-lg leading-relaxed px-4 md:px-0">
+            Central Park<br>
+            New York
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-zinc-900 text-zinc-400 py-12">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+        <div>© 2026 Viação Elite.<br>Todos os direitos reservados.</div>
+        <div class="flex gap-6">
+          <a href="lgpd.html" class="hover:text-white">Política de Privacidade</a>
+        </div>
+        <div class="text-sm text-zinc-500">P.O.Paravidino</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    tailwind.config = {
+      content: [],
+      theme: { extend: {} }
+    }
+  </script>
+</body>
+</html>
