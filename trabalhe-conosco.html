@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalhe Conosco | Viacao Elite</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      margin-top: 40px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      height: 100px;
+      resize: vertical;
+    }
+    button {
+      background: #003366;
+      color: white;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #001f40;
+    }
+    .cnh-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .cnh-group select,
+    .cnh-group input {
+      flex: 1;
+      min-width: 200px;
+    }
+    .required-star {
+      color: #d9534f;
+      margin-left: 4px;
+    }
+    .required-note {
+      color: #d9534f;
+      font-size: 0.9em;
+      margin: -10px 0 15px 0;
+      display: none;
+    }
+
+    .experiencia-item {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+    #btn-add-experiencia {
+      background: #0066cc;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .btn-remover {
+      color: #d9534f;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .cnh-group {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/x-icon" href="favicon_square.ico">
+</head>
+<body>
+<div class="container">
+  <h1>Trabalhe Conosco</h1>
+  <form id="form-trabalhe" action="enviar_curriculo.php" method="POST" enctype="multipart/form-data">
+    
+    <label>Nome completo <span class="required-star">*</span></label>
+    <input type="text" name="nome" required>
+
+    <label>Data de nascimento <span id="data_nascimento-star" class="required-star"></span></label>
+    <input type="date" name="data_nascimento" id="data_nascimento">
+
+    <label>Email <span class="required-star">*</span></label>
+    <input type="email" name="email" required>
+
+    <label>Telefone <span class="required-star">*</span></label>
+    <input type="text" name="telefone" required>
+
+    <label>CEP <span id="cep-star" class="required-star"></span></label>
+    <input type="text" name="cep" id="cep" placeholder="00000-000">
+
+    <label>Endereco <span id="endereco-star" class="required-star"></span></label>
+    <input type="text" name="endereco" id="endereco" placeholder="Rua Exemplo">
+
+    <label>Numero <span id="numero-star" class="required-star"></span></label>
+    <input type="text" name="numero" id="numero" placeholder="123">
+
+    <label>Bairro <span id="bairro-star" class="required-star"></span></label>
+    <input type="text" name="bairro" id="bairro" placeholder="Centro">
+
+    <label>Cidade <span id="cidade-star" class="required-star"></span></label>
+    <input type="text" name="cidade" id="cidade">
+
+    <label>Cargo desejado <span id="cargo-star" class="required-star">*</span></label>
+    <select name="cargo" id="cargo" required>
+      <option value="">Selecione</option>
+      <option>Motorista</option>
+      <option>Cobrador</option>
+      <option>Administrativo</option>
+      <option>Manutencao</option>
+      <option>Jovem Aprendiz</option>
+    </select>
+
+    <label>Escolaridade / Cursos realizados <span id="escolaridade_cursos-star" class="required-star"></span></label>
+    <textarea name="escolaridade_cursos" id="escolaridade_cursos"></textarea>
+
+    <label>CNH <span id="categoria_cnh-star" class="required-star"></span></label>
+    <div class="cnh-group">
+      <select name="categoria_cnh" id="categoria_cnh">
+        <option value="">Selecione</option>
+        <option>A</option>
+        <option>B</option>
+        <option>AB</option>
+        <option>C</option>
+        <option>D</option>
+        <option>E</option>
+        <option>ACC</option>
+        <option>Nao Tenho</option>
+      </select>
+      <input type="text" name="numero_cnh" id="numero_cnh">
+    </div>
+
+    <!-- Experiência Profissional -->
+    <label>Experiencia Profissional <span class="required-star">*</span></label>
+    <div id="experiencias-container"></div>
+
+    <button type="button" id="btn-add-experiencia">
+      + Adicionar outra experiencia
+    </button>
+
+    <label>Anexar curriculo (PDF ou DOC) <span id="curriculo-required" class="required-star"></span></label>
+    <input type="file" name="curriculo" id="curriculo">
+
+    <div id="required-note" class="required-note">
+      Quando nao houver curriculo anexado, todos os campos ficam obrigatorios.
+    </div>
+
+    <label>
+      <input type="checkbox" name="lgpd" required>
+      Declaro que li e concordo com a Politica de Privacidade *
+    </label>
+
+    <button type="submit">Enviar curriculo</button>
+  </form>
+</div>
+<script>
+// Template da experiência
+const template = document.createElement('template');
+template.innerHTML = `
+  <div class="experiencia-item">
+    <label>Empresa / Local <span class="required-star">*</span></label>
+    <input type="text" name="empresa[]" class="empresa" placeholder="Ex: Viacao Elite" required>
+
+    <label>Cargo / Funcao <span class="required-star">*</span></label>
+    <input type="text" name="cargo_exp[]" class="cargo_exp" placeholder="Ex: Motorista de Onibus" required>
+
+    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 200px;">
+        <label>Data de Admissao <span class="required-star">*</span></label>
+        <input type="month" name="data_admissao[]" class="data_admissao" required>
+      </div>
+      <div style="flex: 1; min-width: 200px;">
+        <label>Data de Demissao</label>
+        <input type="month" name="data_demissao[]" class="data_demissao">
+        <label style="font-size: 0.85em; margin-top: 5px; display: block;">
+          <input type="checkbox" class="ainda_trabalha"> Ainda trabalho aqui
+        </label>
+      </div>
+    </div>
+
+    <label>Principais Atividades / Observacoes</label>
+    <textarea name="atividades[]" class="atividades" rows="3" placeholder="Descreva brevemente suas principais responsabilidades..."></textarea>
+
+    <button type="button" class="btn-remover">Remover experiencia</button>
+  </div>
+`;
+
+const container = document.getElementById('experiencias-container');
+const btnAdd = document.getElementById('btn-add-experiencia');
+
+function adicionarExperiencia() {
+  const clone = template.content.cloneNode(true);
+  const item = clone.querySelector('.experiencia-item');
+
+  const aindaTrabalhaCheckbox = item.querySelector('.ainda_trabalha');
+  const dataDemissaoInput = item.querySelector('.data_demissao');
+
+  // CORREÇÃO PRINCIPAL AQUI:
+  aindaTrabalhaCheckbox.addEventListener('change', function() {
+    if (this.checked) {
+      dataDemissaoInput.value = '';        // limpa o campo
+      dataDemissaoInput.disabled = true;   // desabilita
+    } else {
+      dataDemissaoInput.disabled = false;  // habilita
+    }
+  });
+
+  // Botão remover
+  item.querySelector('.btn-remover').addEventListener('click', function() {
+    item.remove();
+  });
+
+  container.appendChild(clone);
+}
+
+// Adiciona primeira experiência
+window.addEventListener('load', () => {
+  adicionarExperiencia();
+});
+
+btnAdd.addEventListener('click', adicionarExperiencia);
+
+// === Lógica dos campos obrigatórios (mantida) ===
+const form = document.getElementById('form-trabalhe');
+const curriculoInput = document.getElementById('curriculo');
+const requiredNote = document.getElementById('required-note');
+
+const conditionalFields = [
+  { id: 'data_nascimento', starId: 'data_nascimento-star' },
+  { id: 'cep', starId: 'cep-star' },
+  { id: 'endereco', starId: 'endereco-star' },
+  { id: 'numero', starId: 'numero-star' },
+  { id: 'bairro', starId: 'bairro-star' },
+  { id: 'cidade', starId: 'cidade-star' },
+  { id: 'cargo', starId: 'cargo-star' },
+  { id: 'escolaridade_cursos', starId: 'escolaridade_cursos-star' },
+  { id: 'categoria_cnh', starId: 'categoria_cnh-star' }
+];
+
+function updateRequiredFields() {
+  const hasFile = curriculoInput.files.length > 0;
+  if (hasFile) {
+    requiredNote.style.display = 'none';
+    document.getElementById('curriculo-required').textContent = '';
+    conditionalFields.forEach(field => {
+      const el = document.getElementById(field.id);
+      if (el) el.removeAttribute('required');
+      const star = document.getElementById(field.starId);
+      if (star) star.textContent = '';
+    });
+  } else {
+    requiredNote.style.display = 'block';
+    document.getElementById('curriculo-required').textContent = '* (obrigatorio sem curriculo)';
+    conditionalFields.forEach(field => {
+      const el = document.getElementById(field.id);
+      if (el) el.setAttribute('required', 'required');
+      const star = document.getElementById(field.starId);
+      if (star) star.textContent = '*';
+    });
+  }
+}
+
+curriculoInput.addEventListener('change', updateRequiredFields);
+window.addEventListener('load', updateRequiredFields);
+
+form.addEventListener('submit', function(e) {
+  const hasFile = curriculoInput.files.length > 0;
+  if (!hasFile) {
+    let missing = false;
+    conditionalFields.forEach(field => {
+      const el = document.getElementById(field.id);
+      if (el && !el.value.trim()) {
+        missing = true;
+        el.style.borderColor = '#d9534f';
+        el.style.borderWidth = '2px';
+      }
+    });
+    if (missing) {
+      e.preventDefault();
+      alert('Quando nao houver curriculo anexado, todos os campos sao obrigatorios.');
+      return false;
+    }
+  }
+});
+</script>
+</body>
+</html>
