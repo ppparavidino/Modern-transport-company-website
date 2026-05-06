@@ -11,7 +11,6 @@ require('fpdf.php');
 $destino = "email.hotmail@gmail.com";
 
 // ========================
-// FUNÇÃO MELHORADA PARA ACENTOS (mais robusta)
 function removerAcentos($texto) {
     if (empty($texto)) return '';
 
