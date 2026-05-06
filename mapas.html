@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Linhas | Viação Elite</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .main {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 340px;
+      background: #1e2937;
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 1px solid #334155;
+    }
+    .map-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #111827;
+      position: relative;
+    }
+    .map-image {
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
+    .line-item {
+      padding: 14px;
+      margin: 8px 0;
+      background: #334155;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .line-item:hover {
+      background: #475569;
+      transform: translateX(8px);
+    }
+    .line-color {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-content {
+      max-width: 95%;
+      max-height: 95vh;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      background: #ef4444;
+      color: white;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+    .btn-voltar{
+      display: block;
+      text-align: center;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      padding: 12px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+<body>
+<div class="main">
+  <!-- Lista de todas as linhas -->
+  <div class="sidebar">
+      <a href="index.html" class="btn-voltar">Voltar ao Início</a>
+    <h2 style="color:#60a5fa; margin-top:0;">Escolha a Linha</h2>
+   
+    <div class="line-item" onclick="abrirMapa('12', 'mapa-12.webp')">
+      <div class="line-color" style="background:#facc15;"></div>
+      12 – Centro x Icaraí
+    </div>
+    <div class="line-item" onclick="abrirMapa('27B', 'mapa-27B.webp')">
+      <div class="line-color" style="background:#3b82f6;"></div>
+      27B – São Francisco x Charitas
+    </div>
+    <div class="line-item" onclick="abrirMapa('41', 'mapa-41.webp')">
+      <div class="line-color" style="background:#22c55e;"></div>
+      41 – Pendotiba x Niterói
+    </div>
+    <div class="line-item" onclick="abrirMapa('58', 'mapa-58.webp')">
+      <div class="line-color" style="background:#14b8a6;"></div>
+      58 – Engenho do Mato x Centro
+    </div>
+    <div class="line-item" onclick="abrirMapa('63D', 'mapa-63D.webp')">
+      <div class="line-color" style="background:#a855f7;"></div>
+      63D – Itaipu x Rio de Janeiro
+    </div>
+    <div class="line-item" onclick="abrirMapa('79A', 'mapa-79A.webp')">
+      <div class="line-color" style="background:#ef4444;"></div>
+      79A – Piratininga x Fonseca
+    </div>
+    <div class="line-item" onclick="abrirMapa('105', 'mapa-105.webp')">
+      <div class="line-color" style="background:#fb923c;"></div>
+      105 – Várzea x Largo do Barril
+    </div>
+    <div class="line-item" onclick="abrirMapa('218', 'mapa-218.webp')">
+      <div class="line-color" style="background:#ec4899;"></div>
+      218 – Jardim Atlântico x Centro
+    </div>
+    <div class="line-item" onclick="abrirMapa('OCE4', 'mapa-oce4.webp')">
+      <div class="line-color" style="background:#06b6d4;"></div>
+      OCEÂNICA 04 – Mané Garrincha x Centro
+    </div>
+    <div class="line-item" onclick="abrirMapa('820', 'mapa-820.webp')">
+      <div class="line-color" style="background:#f97316;"></div>
+      820 – Niterói x Castelo (Expresso)
+    </div>
+  </div>
+
+  <!-- Área do mapa -->
+  <div class="map-area">
+    <h2 style="color:#64748b;">Selecione uma linha ao lado para visualizar o mapa</h2>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal" onclick="if(event.target.id === 'modal') fecharModal()">
+  <div class="modal-content" onclick="event.stopImmediatePropagation()">
+    <button class="modal-close" onclick="fecharModal()">×</button>
+    <img id="mapa-imagem" src="" alt="Mapa da linha" class="map-image">
+  </div>
+</div>
+
+<script>
+function abrirMapa(codigo, imagem) {
+  document.getElementById('mapa-imagem').src = imagem;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function fecharModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+</script>
+</body>
+</html>
